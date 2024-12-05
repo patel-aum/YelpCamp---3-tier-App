@@ -1,0 +1,67 @@
+pipeline {
+    agent any
+
+tools {
+    nodejs "node"
+}
+environment {
+
+        SCANNER_HOME = tool 'sonar-scanner'
+}
+    stages {
+        stage('Git checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/patel-aum/YelpCamp-3-tier-App'
+            }
+        }
+        stage ('Installing dependencies') {
+            steps {
+                sh "npm install"
+            }}
+            
+
+        stage ('Testing') {
+            steps {
+                sh "npm test"
+            }
+        }
+        
+        stage ('Code Quality') {
+            steps {
+                withSonarQubeEnv('sonarqube'){
+                sh "ls $SCANNER_HOME/bin/"
+                sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=yelp-camp -Dsonar.projectName=yelp-camp"
+                } 
+                
+            }
+        }
+        
+        stage ('trivy file system Scan') {
+            steps {
+                sh "trivy fs --format table -o fs-report.html ."
+            }
+        }
+
+stage ('Docker Build') {
+    steps {
+             sh "docker build -t patelaum/yelp-camp:latest ."
+        
+    }
+}
+        stage ('Docker run') {
+           steps {
+                sh "docker-compose up -d"
+            }
+            
+        }
+    
+
+        // stages ('Docker Push') {
+    //         steps {
+    //             withDockerRegistry(credentialsId: 'dockerhub-patelaum', url: 'https://hub.docker.com/repository/docker/patelaum') {
+    //             sh "docker push patelaum/yelp-camp:latest"
+    //             }
+    //         }
+    //     }
+}}
+

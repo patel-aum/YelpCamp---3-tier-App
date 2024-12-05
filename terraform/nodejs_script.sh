@@ -9,3 +9,4 @@ sudo yum install -y nodejs
 node --version
 # Install git
 sudo yum install git
+
