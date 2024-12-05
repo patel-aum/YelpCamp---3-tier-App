@@ -3,3 +3,13 @@ services:
     build: .
     ports:
       - "3000:3000"
+    environment:
+      - CLOUDINARY_CLOUD_NAME=<dev vaules>
+      - CLOUDINARY_KEY=
+      - CLOUDINARY_SECRET=
+      - MAPBOX_TOKEN=
+      - DB_URL=
+      - SECRET=
+
+
+

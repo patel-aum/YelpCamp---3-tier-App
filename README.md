@@ -29,15 +29,16 @@ After configuring the .env file, you can start the project by running:
 docker compose up
 ```
 ## Jenikins Plugins Used:
-NodeJs
-SonarQube Scanner
-Docker 
-Docker Pipeline
-Kubernetes
-Kubernetes CLI
+- NodeJs
+- SonarQube Scanner
+- Docker 
+- Docker Pipeline
+- Kubernetes
+- Kubernetes CLI
 
 ## Teraform 
 use terraform file to automate infrastructure provising of EC2 instances and running initialization installion scripts
+
 
 ## Application Screenshots
 ![](./images/home.jpg)
