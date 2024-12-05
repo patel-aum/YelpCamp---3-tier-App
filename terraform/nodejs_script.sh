@@ -7,4 +7,5 @@ sudo yum install -y nodejs
 
 # Output npm version for verification
 node --version
-
+# Install git
+sudo yum install git

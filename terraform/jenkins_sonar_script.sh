@@ -33,6 +33,9 @@ sudo systemctl start jenkins.service
     # Install Trivy
 sudo rpm -ivh https://github.com/aquasecurity/trivy/releases/download/v0.17.2/trivy_0.17.2_Linux-64bit.rpm
 
+    # Install git
+sudo yum install git
+
 sleep 10;
     # Run SonarQube container
 docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
